@@ -74,6 +74,10 @@ header .container {
     font-size: 1.8em;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
+    /* Animation for logo */
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+    animation-delay: 0.2s;
 }
 
 /* Menu Toggle Button (Hamburger) */
@@ -96,7 +100,17 @@ nav ul {
 
 nav ul li {
     margin-left: 25px;
+    /* Animation for nav items */
+    opacity: 0;
+    animation: fadeInSlideRight 0.6s ease-out forwards;
 }
+
+nav ul li:nth-child(1) { animation-delay: 0.4s; }
+nav ul li:nth-child(2) { animation-delay: 0.5s; }
+nav ul li:nth-child(3) { animation-delay: 0.6s; }
+nav ul li:nth-child(4) { animation-delay: 0.7s; }
+nav ul li:nth-child(5) { animation-delay: 0.8s; }
+
 
 nav ul li a {
     color: #fff;
@@ -108,6 +122,34 @@ nav ul li a {
 }
 nav ul li a:hover {
     color: #FF7F50; /* Orange accent on hover */
+}
+
+/* --- Global Animations (only for header/hero) --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInSlideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* REFINED HERO SECTION STYLES */
@@ -149,6 +191,10 @@ nav ul li a:hover {
     font-weight: 600;
     color: #FF7F50; /* Orange accent color from example */
     margin-bottom: 5px;
+    /* ORIGINAL ANIMATION - Keeping this */
+    opacity: 0; /* Start hidden for animation */
+    animation: fadeInSlideRight 1s ease-out forwards; /* Longer duration for slide */
+    animation-delay: 0.2s;
 }
 
 .hero-content h1 {
@@ -157,6 +203,10 @@ nav ul li a:hover {
     margin-bottom: 10px;
     line-height: 1.1;
     text-shadow: none; /* Remove previous shadow */
+    /* ORIGINAL ANIMATION - Keeping this */
+    opacity: 0; /* Start hidden for animation */
+    animation: fadeInSlideRight 1s ease-out forwards;
+    animation-delay: 0.4s;
 }
 
 .hero-content .tagline {
@@ -165,12 +215,20 @@ nav ul li a:hover {
     margin-bottom: 30px;
     font-weight: 600;
     text-shadow: none; /* Remove previous shadow */
+    /* ORIGINAL ANIMATION - Keeping this */
+    opacity: 0; /* Start hidden for animation */
+    animation: fadeInSlideRight 1s ease-out forwards;
+    animation-delay: 0.6s;
 }
 
 .hero-buttons {
     display: flex;
     gap: 20px; /* Space between buttons */
     margin-top: 30px;
+    /* ORIGINAL ANIMATION - Keeping this */
+    opacity: 0; /* Start hidden for animation */
+    animation: fadeInSlideRight 1s ease-out forwards;
+    animation-delay: 0.8s;
 }
 
 .btn-primary {
@@ -214,6 +272,10 @@ nav ul li a:hover {
     align-items: center;
     position: relative;
     min-height: 400px; /* Ensure space for image container */
+    /* Animation for hero image and shapes */
+    opacity: 0;
+    animation: scaleIn 1s ease-out forwards;
+    animation-delay: 1s; /* After content animations */
 }
 
 .hero-image .image-wrapper {
@@ -311,6 +373,7 @@ section:last-child {
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Darker shadow for dark background */
     border: 5px solid #FF7F50; /* Border around the image to accent orange */
+    /* Removed animations */
 }
 
 .about-image img {
@@ -328,7 +391,7 @@ section:last-child {
     text-align: left; /* Ensure text inside this div aligns left */
     margin-left: 40px; /* NEW: Margin to the left of the text */
     flex-basis: auto; /* Allow content to dictate its own base size for flex */
-    /* Re-evaluate max-width if flex-basis is used heavily with a strict margin */
+    /* Removed animations */
 }
 
 #about h2 {
@@ -359,6 +422,8 @@ section:last-child {
     align-items: center;
     justify-content: center;
     text-align: center;
+    /* Removed animations */
+    opacity: 1; /* Ensure visible */
 }
 
 .stat-icon-wrapper {
@@ -424,7 +489,10 @@ section:last-child {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow for cards */
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Added background-color to transition */
+    /* Removed animations */
+    opacity: 1; /* Ensure visible */
 }
+
 
 .service-item:hover {
     transform: translateY(-8px); /* More pronounced lift on hover */
@@ -458,7 +526,10 @@ section:last-child {
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow for items */
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Added background-color to transition */
+    /* Removed animations */
+    opacity: 1; /* Ensure visible */
 }
+
 
 .portfolio-item:hover {
     transform: translateY(-8px); /* More pronounced lift on hover */
@@ -519,6 +590,8 @@ form {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow for form */
     text-align: left;
+    /* Removed animations */
+    opacity: 1; /* Ensure visible */
 }
 
 .form-group {
@@ -582,6 +655,8 @@ form .btn:hover {
     margin-top: 40px;
     font-size: 1.1em;
     color: #b0b0b0; /* Lighter text */
+    /* Removed animations */
+    opacity: 1; /* Ensure visible */
 }
 
 .contact-info a {
@@ -594,6 +669,8 @@ footer {
     color: #f0f0f0; /* Light gray text for contrast */
     padding-top: 40px;
     font-size: 0.95em;
+    /* Removed animations */
+    opacity: 1; /* Ensure visible */
 }
 
 .footer-grid {
@@ -825,6 +902,9 @@ footer a:hover {
     nav ul li {
         margin: 0;
         text-align: center;
+        /* Reset animation on mobile for menu items to avoid initial hidden state */
+        animation: none;
+        opacity: 1;
     }
     nav ul li a {
         display: block;
