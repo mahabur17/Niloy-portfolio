@@ -7,7 +7,9 @@ body {
     color: #f0f0f0; /* Lighter text color for darker backgrounds */
     background-color: #262626; /* Slightly darker base background for more depth */
 }
-
+html{
+    scroll-behavior: smooth;
+}
 h1, h2, h3 {
     font-family: 'Montserrat', sans-serif;
     color: #f0f0f0; /* Lighter headings for darker backgrounds */
@@ -54,13 +56,21 @@ a:hover {
 
 /* Header and Navigation */
 header {
-    background-color: #2c3e50; /* Reverted: Dark blue-gray header */
+    background-color: #2c2c2c; /* Initial background matches hero section */
     color: #fff;
     padding: 15px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Changed: Lower offset and reduced opacity */
+    /* Add transition for smooth color change and shadow */
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.3s ease;
+    box-shadow: none; /* No shadow by default when at the top */
+}
+
+/* Style for the header when it's scrolled */
+header.header-scrolled {
+    background-color: #2c3e50; /* Dark blue-gray when scrolled */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Re-add shadow when scrolled */
 }
 
 header .container {
@@ -100,11 +110,12 @@ nav ul {
 
 nav ul li {
     margin-left: 25px;
-    /* Animation for nav items */
+    /* RE-ADDED ANIMATION FOR NAV ITEMS */
     opacity: 0;
-    animation: fadeInSlideRight 0.6s ease-out forwards;
+    animation: slideInFromTop 0.6s ease-out forwards; /* Using slideInFromTop for a subtle drop */
 }
 
+/* Staggered animation delays for nav items */
 nav ul li:nth-child(1) { animation-delay: 0.4s; }
 nav ul li:nth-child(2) { animation-delay: 0.5s; }
 nav ul li:nth-child(3) { animation-delay: 0.6s; }
@@ -124,6 +135,27 @@ nav ul li a:hover {
     color: #FF7F50; /* Orange accent on hover */
 }
 
+/* Style for the header CTA button */
+.header-cta {
+    background-color: #FF7F50;
+    color: #212121;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+    margin-left: 30px; /* Space it out from the navigation */
+    white-space: nowrap; /* Prevent text from wrapping */
+    opacity: 0; /* Start hidden for animation */
+    animation: fadeIn 0.8s ease-out forwards;
+    animation-delay: 0.9s; /* Stagger after last nav item */
+}
+
+.header-cta:hover {
+    background-color: #212121;
+    color: #FF7F50;
+    transform: translateY(-2px);
+}
+
 /* --- Global Animations (only for header/hero) --- */
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -141,16 +173,30 @@ nav ul li a:hover {
     }
 }
 
-@keyframes scaleIn {
+/* Animation for hero image (right to left) */
+@keyframes slideInFromRight {
     from {
         opacity: 0;
-        transform: scale(0.9);
+        transform: translateX(50px); /* Start 50px to the right */
     }
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateX(0);
     }
 }
+
+/* Animation for hero text (top to bottom) */
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Start 20px above */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 /* REFINED HERO SECTION STYLES */
 #hero {
@@ -191,10 +237,10 @@ nav ul li a:hover {
     font-weight: 600;
     color: #FF7F50; /* Orange accent color from example */
     margin-bottom: 5px;
-    /* ORIGINAL ANIMATION - Keeping this */
+    /* ADJUSTED ANIMATION DELAY - FASTER */
     opacity: 0; /* Start hidden for animation */
-    animation: fadeInSlideRight 1s ease-out forwards; /* Longer duration for slide */
-    animation-delay: 0.2s;
+    animation: slideInFromTop 0.8s ease-out forwards;
+    animation-delay: 0.8s; /* Starts sooner */
 }
 
 .hero-content h1 {
@@ -203,10 +249,10 @@ nav ul li a:hover {
     margin-bottom: 10px;
     line-height: 1.1;
     text-shadow: none; /* Remove previous shadow */
-    /* ORIGINAL ANIMATION - Keeping this */
+    /* ADJUSTED ANIMATION DELAY - FASTER */
     opacity: 0; /* Start hidden for animation */
-    animation: fadeInSlideRight 1s ease-out forwards;
-    animation-delay: 0.4s;
+    animation: slideInFromTop 0.8s ease-out forwards;
+    animation-delay: 1.0s; /* Staggered after greeting */
 }
 
 .hero-content .tagline {
@@ -215,20 +261,20 @@ nav ul li a:hover {
     margin-bottom: 30px;
     font-weight: 600;
     text-shadow: none; /* Remove previous shadow */
-    /* ORIGINAL ANIMATION - Keeping this */
+    /* ADJUSTED ANIMATION DELAY - FASTER */
     opacity: 0; /* Start hidden for animation */
-    animation: fadeInSlideRight 1s ease-out forwards;
-    animation-delay: 0.6s;
+    animation: slideInFromTop 0.8s ease-out forwards;
+    animation-delay: 1.2s; /* Staggered after h1 */
 }
 
 .hero-buttons {
     display: flex;
     gap: 20px; /* Space between buttons */
     margin-top: 30px;
-    /* ORIGINAL ANIMATION - Keeping this */
+    /* ADJUSTED ANIMATION DELAY - FASTER */
     opacity: 0; /* Start hidden for animation */
-    animation: fadeInSlideRight 1s ease-out forwards;
-    animation-delay: 0.8s;
+    animation: slideInFromTop 0.8s ease-out forwards;
+    animation-delay: 1.4s; /* Staggered after tagline */
 }
 
 .btn-primary {
@@ -272,10 +318,9 @@ nav ul li a:hover {
     align-items: center;
     position: relative;
     min-height: 400px; /* Ensure space for image container */
-    /* Animation for hero image and shapes */
     opacity: 0;
-    animation: scaleIn 1s ease-out forwards;
-    animation-delay: 1s; /* After content animations */
+    animation: slideInFromRight 1s ease-out forwards;
+    animation-delay: 0.3s; /* Image animation starts sooner */
 }
 
 .hero-image .image-wrapper {
@@ -369,7 +414,7 @@ section:last-child {
     flex-shrink: 0; /* Prevents image from shrinking too much */
     width: 300px; /* Base width for the image */
     height: 300px; /* Base height for the image */
-    border-radius: 50%; /* Makes the image circular */
+    border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Darker shadow for dark background */
     border: 5px solid #FF7F50; /* Border around the image to accent orange */
@@ -768,6 +813,14 @@ footer a:hover {
         padding-right: 0;
         margin-bottom: 40px;
         max-width: 100%;
+        order: 0; /* Ensures content stays below the image (optional, as 0 is default) */
+    }
+    .hero-image {
+        order: -1; /* Moves the image above the text */
+        width: 100%; /* Allow it to take full width */
+        min-height: 350px; /* Adjust minimum height as needed */
+        margin-bottom: 20px;
+        padding-left: 0; /* Ensure no left padding from original state */
     }
     .hero-content h1 {
         font-size: 3em;
@@ -777,13 +830,6 @@ footer a:hover {
     }
     .hero-buttons {
         justify-content: center;
-    }
-    .hero-image {
-        /* Adjusted width and min-height to allow for better scaling while maintaining aspect */
-        width: 100%; /* Allow it to take full width */
-        min-height: 350px; /* Adjust minimum height as needed */
-        margin-bottom: 20px;
-        padding-left: 0; /* Ensure no left padding from original state */
     }
     .hero-image .image-wrapper {
         width: 300px; /* Keep a fixed width for the inner wrapper to maintain a square shape */
@@ -873,12 +919,11 @@ footer a:hover {
 
 
     nav {
-        /* Removed display: none; */
         width: 100%;
         position: absolute;
         top: 65px;
         left: 0;
-        background-color: #2c3e50;
+        background-color: #2c3e50; /* Ensure mobile menu uses the darker color */
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
         /* NEW TRANSITION PROPERTIES */
@@ -902,10 +947,18 @@ footer a:hover {
     nav ul li {
         margin: 0;
         text-align: center;
-        /* Reset animation on mobile for menu items to avoid initial hidden state */
-        animation: none;
-        opacity: 1;
+        /* Re-enable animation on mobile for menu items to ensure they fade in */
+        animation: slideInFromTop 0.4s ease-out forwards;
+        opacity: 0; /* Start hidden for animation */
     }
+    /* Staggered delays for mobile menu items */
+    nav.active ul li:nth-child(1) { animation-delay: 0.1s; }
+    nav.active ul li:nth-child(2) { animation-delay: 0.2s; }
+    nav.active ul li:nth-child(3) { animation-delay: 0.3s; }
+    nav.active ul li:nth-child(4) { animation-delay: 0.4s; }
+    nav.active ul li:nth-child(5) { animation-delay: 0.5s; }
+
+
     nav ul li a {
         display: block;
         padding: 15px 20px;
