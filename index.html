@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="script.js"></script>
-</head>
+    </head>
 <body>
     <header>
         <div class="container">
@@ -219,25 +218,7 @@
             </div>
         </div>
     </footer>
-    <script>
-        // JavaScript for toggling the mobile menu
-        document.addEventListener('DOMContentLoaded', function () {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const mainNav = document.getElementById('main-nav');
 
-            menuToggle.addEventListener('click', function () {
-                mainNav.classList.toggle('active');
-                menuToggle.classList.toggle('active'); // Toggle 'active' on the button itself for icon animation
-            });
-
-            // Close menu when a link is clicked (for single-page navigation)
-            document.querySelectorAll('#main-nav ul li a').forEach(item => {
-                item.addEventListener('click', () => {
-                    mainNav.classList.remove('active');
-                    menuToggle.classList.remove('active'); // Remove 'active' from button when menu closes
-                });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
